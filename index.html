@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ thống biên soạn và kiểm tra trắc nghiệm trực tuyến môn Toán</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind Config for custom colors if needed
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- CSS FIX for MathJax + Tailwind Conflict -->
+    <style>
+      /* 
+       * Tailwind sets svg to display: block by default.
+       * We must override this for MathJax containers to keep math inline.
+       */
+      mjx-container {
+        display: inline-block !important;
+        margin: 0 2px !important;
+        vertical-align: middle !important;
+      }
+      
+      mjx-container svg {
+        display: inline-block !important;
+      }
+
+      /* Optional: Ensure text wraps nicely around math */
+      .math-content {
+        line-height: 1.8;
+        word-wrap: break-word;
+      }
+    </style>
+
+    <!-- MathJax Configuration -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          packages: {'[+]': ['noerrors', 'noundefined']}
+        },
+        loader: {load: ['[tex]/noerrors', '[tex]/noundefined']},
+        svg: {
+          fontCache: 'global'
+        },
+        startup: {
+          typeset: false // We will handle typesetting manually in React
+        }
+      };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-50 text-gray-900 font-sans antialiased md:text-lg">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
